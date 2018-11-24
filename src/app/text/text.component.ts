@@ -7,13 +7,14 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 })
 export class TextComponent implements OnInit {
   @Output() written = new EventEmitter();
-
+  message = {username: '', message: ''};
+  
   constructor() { }
 
   ngOnInit() {
   }
 
-  sendInfo(value) {
-    this.written.emit(value.value);
+  sendInfo() {
+    this.written.emit(this.message);
   }
 }

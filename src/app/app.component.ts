@@ -7,8 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'chat';
+  messages = [];
 
   sayHi(valor) {
-    alert(valor);
+    this.messages.push({...valor});
   }
 }

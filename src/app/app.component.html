@@ -1,9 +1,6 @@
-<app-avatar alt="avatar de Juan" src="https://picsum.photos/200/300"></app-avatar>
-<app-avatar alt="avatar de Juan" src="https://picsum.photos/200/300"></app-avatar>
-<app-avatar alt="avatar de Juan" src="https://picsum.photos/200/300"></app-avatar> 
-
-<h1>Login</h1>
+<p *ngFor="let message of messages">
+    <app-avatar [user]="message.username"></app-avatar>
+    <span>{{ message.username }}:</span>
+    {{ message.message}}
+</p>
 <app-text (written)="sayHi($event)"></app-text>
-
-<h2>Comment </h2>
-<app-text (written)="sayComment()"></app-text>
