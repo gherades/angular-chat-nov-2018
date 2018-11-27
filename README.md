@@ -14,14 +14,44 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
+## Tutorial - Spanish
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Este es el ejemplo / proyecto a realizar por los alumnos del curso de Angular de Fictizia. Se irán añadiendo instrucciones aquí paso a paso
 
-## Running end-to-end tests
+  ### Generar el proyecto. 
+  
+  Podemos generar el proyecto utilizando el comando 
+  ```
+  ng new chat
+  ````
+  Esto generará una carpeta chat en la que se crearán los archivos necesarios para comenzar un proyecto angular. Podemos lanzar la aplicación utilizando el comando siguiente y accediendo al puerto localhost:4200
+  ````
+  ng serve
+  ````
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+  ### Generar un componente avatar. 
+  En este componente, visualizaremos la información de los contactos que vayamos utilizando. Podemos generar nuevos componentes utilizando el siguiente comando.
+  ```
+  ng generate component avatar
+  ````
 
-## Further help
+  Por defecto, nos generará un componente con el selector app-avatar. Si añadimos el html siguiente, visualizaremos en nuestra aplicación el mensaje app avatar works!
+  ````
+  <app-avatar></app-avatar>
+  `````
+  Una vez tenemos el componente creado, podemos añadirle propiedades mediante Inputs. Consulta las slides si tienes dudas, pero acabaremos con algo asi en nuestro avatar.component.ts
+  ````
+  class AvatarComponent {
+    @Input() imgSrc: string;
+  }
+  ````
+ algo así en nuestro avatar.component.html
+ ```
+  <img [src]="imgSrc">
+  ```
+ y así en nuestro app.component.html
+ ````
+  <app-avatar src="url.jpg"></app-avatar>
+ `````
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Con esto, habremos creado nuestro primer componente con propiedades de entrada (Inputs)
