@@ -82,6 +82,11 @@ Ahora ya podemos utilizar NgModel en nuestro componente. Vamos a empezar generan
   ng g c text
   ```
 
+Podemos incluirlo en el html del app.component.html utilizando el selector
+```
+<app-text></app-text>
+```
+
 Ahora vamos a crear una variable "message" en nuestro text.component.ts para almacenar el valor introducido en el input por el usuario
 
 ```
@@ -120,3 +125,60 @@ export class TextComponent implements OnInit {
   }
 }
 ```
+
+  ### Comunicando entre componentes
+  
+  Hemos creado un componente de introducción de texto, que nos servirá para introducir un nombre de usuario, un mensaje, o un comentario, dependiendo del contexto en el que lo utilizemos. Nuestro objetivo ahora es mostrar ese mensaje en el componente padre app.component.html. Para ello tendremos que usar los Output (Más info en las slides). Los outputs nos ayudan a definir "eventos propios del componente" que podremos escuchar como escuchamos los click, change y demás.
+  
+ ```
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+
+@Component({
+  selector: 'app-text',
+  templateUrl: './text.component.html',
+  styleUrls: ['./text.component.css']
+})
+export class TextComponent implements OnInit {
+  @Output() written = new EventEmitter();
+  message: string = '';
+  
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+  sendInfo() {
+    this.written.emit(this.message);
+  }
+  
+  ```
+Como podéis ver, hemos definido el Output "written", y hemos modificado la función sendInfo para que, en vez de mostrar un mensaje alert por pantalla, emita la información a través de ese Output. De esta forma, podemos escuchar ese mensaje desde *app.component* con la notación de parentesis
+
+````
+  <app-text (written)="receiveMessage($event)"></app-text>
+````
+
+Ahora, podemos definir esa función receiveMessage en nuestro app.component.ts para que guarde el valor del mensaje enviado en una variable. Como véis, hemos utilizado una variable especial $event en la llamada a la función, esto debe ir siempre que queramos recoger la información que nos envía el evento. En el caso de nuestro evento, recibiremos lo que hemos enviado en el emit de el Output
+
+````
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'chat';
+  parentMessage: string;
+
+  receiveMessage(message) {
+    this.parentMessage = message;
+  }
+````
+y mostrarlo en nuestro html
+````
+<h3>Mensaje desde el hijo:</h3>
+<p>{{ parentMessage }}</p>
+<app-text (written)="receiveMessage($event)"></app-text>
