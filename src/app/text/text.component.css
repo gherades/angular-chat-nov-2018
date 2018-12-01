@@ -1,0 +1,16 @@
+button {
+    padding: 20px;
+    border: 0;
+    background: #8ee0ff;
+    min-width: 200px;
+    font-size: 22px;
+}
+
+:host {
+    display: flex;
+}
+
+input {
+    flex: 1;
+    font-size: 20px;
+}

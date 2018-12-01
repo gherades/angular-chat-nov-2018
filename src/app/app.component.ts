@@ -10,6 +10,7 @@ export class AppComponent {
   title = 'chat';
   messages = [];
   users;
+  user;
 
   /**
    * Constructor de app component, inyectando como 
@@ -26,5 +27,9 @@ export class AppComponent {
 
   sayHi(valor) {
     this.messages.push({...valor});
+  }
+
+  setUser(user) {
+    this.user = user;
   }
 }
