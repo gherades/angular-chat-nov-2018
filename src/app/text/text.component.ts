@@ -16,5 +16,6 @@ export class TextComponent implements OnInit {
 
   sendInfo() {
     this.written.emit(this.message);
+    this.message.message = '';
   }
 }

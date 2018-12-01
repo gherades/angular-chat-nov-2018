@@ -10,10 +10,6 @@ import { Component, OnInit, Input } from '@angular/core';
  */
 export class AvatarComponent implements OnInit {
   /**
-   * Definimos el atributo srcValue con el alias src
-   */
-  @Input('src') srcValue: string = 'perrete';
-  /**
    * Definimos el atributo altValue con el alias src
    */
   @Input('alt') altValue: string;
